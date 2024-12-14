@@ -48,8 +48,9 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.black38,
+        backgroundColor: Colors.black12,
         title: const Text("Load Image from LocalDB "),
         centerTitle: true,
       ),
@@ -63,7 +64,13 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
             Center(
               child: ElevatedButton(
                 onPressed: pickAndSaveImage,
-                child: const Text("Pick and Save Image"),
+                child: const Text(
+                  "Pick and Save Image",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.purple,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -73,7 +80,7 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
                 } else if (!snapshot.hasData) {
-                  return const Text("No image found");
+                  return const Text("Nothing Upload");
                 } else {
                   return Column(
                     children: [
