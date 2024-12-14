@@ -48,7 +48,11 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Load Image from LocalDB in Flutter")),
+      appBar: AppBar(
+        backgroundColor: Colors.black38,
+        title: const Text("Load Image from LocalDB "),
+        centerTitle: true,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
