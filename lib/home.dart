@@ -53,36 +53,43 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
         title: const Text("Load Image from LocalDB "),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: pickAndSaveImage,
-            child: const Text("Pick and Save Image"),
-          ),
-          const SizedBox(height: 20),
-          FutureBuilder<Uint8List?>(
-            future: loadImage(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else if (!snapshot.hasData) {
-                return const Text("No image found");
-              } else {
-                return Column(
-                  children: [
-                    Image.memory(snapshot.data!),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: deleteImage,
-                      child: const Text("Delete Image"),
-                    ),
-                  ],
-                );
-              }
-            },
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: pickAndSaveImage,
+                child: const Text("Pick and Save Image"),
+              ),
+            ),
+            const SizedBox(height: 20),
+            FutureBuilder<Uint8List?>(
+              future: loadImage(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (!snapshot.hasData) {
+                  return const Text("No image found");
+                } else {
+                  return Column(
+                    children: [
+                      Image.memory(snapshot.data!),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: deleteImage,
+                        child: const Text("Delete Image"),
+                      ),
+                    ],
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
