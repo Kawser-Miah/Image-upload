@@ -31,8 +31,10 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
     if (pickedFile != null) {
       final imageBytes = await pickedFile.readAsBytes();
 
+      // Retrieve the stored images safely and cast them to List<Uint8List>
       List<Uint8List> imageList =
-          imageBox.get('storedImages', defaultValue: <Uint8List>[])!;
+          (imageBox.get('storedImages', defaultValue: <Uint8List>[]) as List)
+              .cast<Uint8List>();
 
       imageList.add(imageBytes);
 
@@ -43,8 +45,10 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
   }
 
   Future<void> deleteImage(int index) async {
+    // Retrieve the stored images safely and cast them to List<Uint8List>
     List<Uint8List> imageList =
-        imageBox.get('storedImages', defaultValue: <Uint8List>[])!;
+        (imageBox.get('storedImages', defaultValue: <Uint8List>[]) as List)
+            .cast<Uint8List>();
 
     imageList.removeAt(index);
 
@@ -54,7 +58,9 @@ class _SaveAndDisplayImagePageState extends State<SaveAndDisplayImagePage> {
   }
 
   Future<List<Uint8List>> loadImages() async {
-    return imageBox.get('storedImages', defaultValue: <Uint8List>[])!;
+    // Retrieve the stored images safely and cast them to List<Uint8List>
+    return (imageBox.get('storedImages', defaultValue: <Uint8List>[]) as List)
+        .cast<Uint8List>();
   }
 
   @override
